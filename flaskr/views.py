@@ -4,7 +4,8 @@
 #
 from flask import request, redirect, url_for, render_template, flash
 from flask import jsonify
-from flaskr import app
+#from flaskr import app
+from flaskr import app, vect
 import numpy as np
 #
 @app.route('/')
@@ -46,11 +47,10 @@ def predict_show():
 #
 @app.route('/api_test', methods=['GET', 'POST'])
 def api_test():
-    from flaskr.include.pred_price import  PredPrice
+    #from flaskr.include.pred_price import  PredPrice
     if request.method == "POST":
         ret = "len :"+ str(len(request.form))
         print(request.form['siki_price'])
-        #return  ret
         siki_price=request.form['siki_price']
         rei_price =request.form['rei_price']
         menseki   =request.form['menseki']
@@ -58,18 +58,15 @@ def api_test():
         toho      =request.form['toho']
 #        print(request.form )
         #param
-        params = {"siki_price" : siki_price
-        , "rei_price" : rei_price
-        , "menseki" : menseki
-        , "nensu"   : nensu
-        , "toho"    : toho
+        params = {
+            "siki_price" : siki_price
+            , "rei_price" : rei_price
+            , "menseki" : menseki
+            , "nensu"   : nensu
+            , "toho"    : toho
         }
         print("#POST")
-        pred =PredPrice()
-        model =pred.load_model()
-        df = pred.load_data( params )
-        price = model.predict(df )
-        price_int = np.array( price , np.int32)        
+        price_int=vect.predict(params )
         print( price_int[0] )
         dic = {"price" : str(price_int[0]) }
         return jsonify(dic)
