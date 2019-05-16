@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Predict Price:</h1> 
+<br />
+  <div>
+    <h3>price : {{price}} [JPY]</h3>
+
+  </div>
+  <hr />
+  <a href="{{ url_for('predict_show') }}">[ back ]</a><br />
+  <br />
+{% endblock %}

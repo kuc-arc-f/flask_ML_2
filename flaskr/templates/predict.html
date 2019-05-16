@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>predict Input: </h1> 
+<br />
+  <form action="{{ url_for('predict') }}" method=post class=add-entry>
+    <dl>
+      <dt>敷金:</dt>
+      <dd><input type=text size=10 name="siki_price" value="0" /></dd>
+      <br />
+      <dt>礼金:</dt>
+      <dd><input type=text size=10 name="rei_price" value="0" /></dd>
+      <br />
+      <dt>面積:</dt>
+      <dd><input type=text size=10 name="menseki" value="0" /></dd>
+      <br />
+      <dt>建築年数:</dt>
+      <dd><input type=text size=10 name="nensu" value="0" /></dd>
+      <br />
+      <dt>駅 徒歩:</dt>
+      <dd><input type=text size=10 name="toho" value="0" /></dd>
+      <br />
+
+      <dd><input type=submit value="予測する"></dd>
+    </dl>
+  </form>
+<!--
+-->
+{% endblock %}
